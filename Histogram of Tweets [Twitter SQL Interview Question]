@@ -1,0 +1,14 @@
+-- Data Lemur SQL Challenge: Histogram of Tweets
+-- Link: https://datalemur.com/questions/sql-histogram-tweets
+
+SELECT tweet_id as tweet_bucket,
+count (user_id)
+from (
+SELECT user_id,
+COUNT(*) tweet_id 
+from tweets
+WHERE tweet_date > '12/31/2021'
+group by user_id
+order by 1) as subquery
+GROUP BY tweet_id
+order by tweet_id
